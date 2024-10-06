@@ -11,7 +11,14 @@ public class ProblemSet4 {
         System.out.println(isPalindrome("botafogo"));
 
 
-        System.out.println(encrypt);
+        System.out.println(encrypt("Botafogo", 3));
+        System.out.println(decrypt("Erwdirjr", 3)); /////////wrong
+
+        System.out.println(encrypt("This is my secret message", 3));
+        System.out.println(decrypt("Neze tvskveqqmrk mw ws qygl jyr" , 4));
+
+        // determine the shift used and decrypt “T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d”
+
 /*
         System.out.println(decrypt);
 
@@ -28,9 +35,8 @@ public class ProblemSet4 {
 
         for (int i = text.length() - 1; i >= 0; i--) {
             reverse += text.charAt(i);
-            System.out.print(reverse);
+            System.out.println(reverse);
         }
-        System.out.println();
 
         for (int i = 0; i< text.length(); i++) {
             if (text.charAt(i) != reverse.charAt(i)){
@@ -40,16 +46,38 @@ public class ProblemSet4 {
         return true;
     }
 
-    public encrypt(String text, int shift){
-/*
+    public static String encrypt(String text, int shift) {
+        StringBuilder encryptedText = new StringBuilder();
+
+        // Loop through each character in the text
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+
+            // Shift the character by the shift value
+            char shiftedChar = (char) (ch + shift);
+
+            // Append the shifted character to the result
+            encryptedText.append(shiftedChar);
+        }
+
+        // Return the encrypted string
+        return encryptedText.toString();
     }
-    public decrypt(String text, int shift){
+    public static String decrypt(String text, int shift) {
+        StringBuilder decryptedText = new StringBuilder();
 
+        // Loop through each character in the text
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+
+            // Shift the character back by the shift value
+            char shiftedChar = (char) (ch - shift);
+
+            // Append the shifted character to the result
+            decryptedText.append(shiftedChar);
+        }
+
+        // Return the decrypted string
+        return decryptedText.toString();
     }
-    public guess_shift(String text){
-
-    }
-
-
- */
 }
