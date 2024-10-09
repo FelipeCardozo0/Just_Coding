@@ -9,10 +9,10 @@ public class ProblemSet4 {
         System.out.println(decrypt("Erwdirjr", 3));
 
         System.out.println(encrypt("This is my secret message", 3));
-        System.out.println(decrypt("Wklv lv pb vhfuhw phvvdjh" , 3)); // fixed shift
+        System.out.println(decrypt("Wklv lv pb vhfuhw phvvdjh" , 3));
+        System.out.println(decrypt("Neze tvskveqqmrk mw ws qygl jyr", 4));
 
-        // Determine the shift used and decrypt
-        guess_shift("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d");
+        System.out.println(guess_shift("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d"));
     }
 
     public static boolean isPalindrome(String text) {
@@ -96,7 +96,9 @@ public class ProblemSet4 {
         return decryptedText.toString();
     }
 
-    public static void guess_shift(String text) {
+    public static String guess_shift(String text) {
+        StringBuilder result = new StringBuilder();
+
         // Try all shift values from 1 to 26
         for (int shift = 1; shift <= 26; shift++) {
             StringBuilder decryptedText = new StringBuilder();
@@ -126,8 +128,12 @@ public class ProblemSet4 {
                 }
             }
 
-            // Print the shift value and corresponding decrypted text
-            System.out.println("Shift " + shift + ": " + decryptedText.toString());
+            // Append the shift value and decrypted text to the result
+            result.append("Shift ").append(shift).append(": ").append(decryptedText.toString()).append("\n");
         }
+
+        // Return the accumulated result as a single string
+        return result.toString();
     }
+
 }
