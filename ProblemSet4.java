@@ -10,6 +10,12 @@ public class ProblemSet4 {
 
         System.out.println(encrypt("This is my secret message", 3));
         System.out.println(decrypt("Wklv lv pb vhfuhw phvvdjh" , 3));
+
+        System.out.println(decrypt("Wklv lv p| vhfuhw phvvdjh, 3)" , 3));
+        System.out.println(decrypt("decrypt(IY 7=6 oy znk hkyz irgyy", 6));
+        System.out.println(decrypt("}om|o~} }om|o~} }om|o~}", 10));
+        System.out.println(decrypt("CS 170 is the best class", 6));
+        
         System.out.println(decrypt("Neze tvskveqqmrk mw ws qygl jyr", 4));
 
         System.out.println(guess_shift("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d"));
