@@ -20,6 +20,21 @@ public class ProblemSet4 {
 
         System.out.println(guess_shift("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d"));
     }
+    public static boolean isPalindrome(String text) {
+        String reverse = "";
+        text = text.toLowerCase();
+        text = text.replace(" ","");
+        for (int i = text.length() - 1; i >= 0; i--) {
+            reverse += text.charAt(i);
+        }
+
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) != reverse.charAt(i)){
+                return false;
+            }
+        }
+        return true;
+    }
 
     public static String encrypt(String text, int shift) {
         StringBuilder encryptedText = new StringBuilder();
