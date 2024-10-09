@@ -38,16 +38,23 @@ public class ProblemSet4 {
         }
         return true;
     }
-     public static String encrypt(String text, int shift) {
-        StringBuilder result = new StringBuilder();
-
+    public static String encrypt(String text, int shift) {
+        StringBuilder encryptedText = new StringBuilder();
+        
         for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            char shiftedChar = (char)(ch + shift);
-            result.append(shiftedChar);
+            char currentChar = text.charAt(i);
+
+            // Check if the character is a whitespace
+            if (Character.isWhitespace(currentChar)) {
+                encryptedText.append(currentChar);
+            } else {
+                // Shift the character by the given amount
+                char shiftedChar = (char) (currentChar + shift);
+                encryptedText.append(shiftedChar);
+            }
         }
 
-        return result.toString();
+        return encryptedText.toString();
     }
 
     public static String decrypt(String text, int shift) {
