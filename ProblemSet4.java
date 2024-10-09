@@ -9,7 +9,7 @@ public class ProblemSet4 {
         System.out.println(decrypt("Erwdirjr", 3));
 
         System.out.println(encrypt("This is my secret message", 3));
-        System.out.println(decrypt("Wklv lv pb vhfuhw phvvdjh" , 3));
+        System.out.println(decrypt("Neze tvskveqqmrk mw ws qygl jyr" , 4));
 
         System.out.println(decrypt("Wklv lv p| vhfuhw phvvdjh, 3)" , 3));
         System.out.println(decrypt("decrypt(IY 7=6 oy znk hkyz irgyy", 6));
@@ -18,8 +18,7 @@ public class ProblemSet4 {
 
         System.out.println(decrypt("Neze tvskveqqmrk mw ws qygl jyr", 4));
 
-        System.out.println(guess_shift("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d"));
-        System.out.println(decrypt("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d", 4));
+        guess_shift("T ^_`Od NZX[`_P] ^NTPYNP L_ PXZ]d");
 
     }
 
@@ -40,15 +39,13 @@ public class ProblemSet4 {
     }
     public static String encrypt(String text, int shift) {
         StringBuilder encryptedText = new StringBuilder();
-        
+
         for (int i = 0; i < text.length(); i++) {
             char currentChar = text.charAt(i);
 
-            // Check if the character is a whitespace
             if (Character.isWhitespace(currentChar)) {
                 encryptedText.append(currentChar);
             } else {
-                // Shift the character by the given amount
                 char shiftedChar = (char) (currentChar + shift);
                 encryptedText.append(shiftedChar);
             }
@@ -57,17 +54,15 @@ public class ProblemSet4 {
         return encryptedText.toString();
     }
 
- public static String decrypt(String text, int shift) {
+    public static String decrypt(String text, int shift) {
         StringBuilder decryptedText = new StringBuilder();
-        
+
         for (int i = 0; i < text.length(); i++) {
             char currentChar = text.charAt(i);
 
-            // Check if the character is a whitespace
             if (Character.isWhitespace(currentChar)) {
                 decryptedText.append(currentChar);
             } else {
-                // Reverse the shift by subtracting the shift value
                 char shiftedChar = (char) (currentChar - shift);
                 decryptedText.append(shiftedChar);
             }
@@ -76,35 +71,22 @@ public class ProblemSet4 {
         return decryptedText.toString();
     }
 
-    public static String guess_shift(String text) {
-        StringBuilder result = new StringBuilder();
-
+    public static void guess_shift(String text) {
         for (int shift = 1; shift <= 26; shift++) {
             StringBuilder decryptedText = new StringBuilder();
 
             for (int i = 0; i < text.length(); i++) {
-                char ch = text.charAt(i);
+                char currentChar = text.charAt(i);
 
-                if (!Character.isWhitespace(ch)) {
-                    if (Character.isLetter(ch)) {
-                        if (Character.isUpperCase(ch)) {
-                            char shiftedChar = (char) ((ch - 'A' - shift + 26) % 26 + 'A');
-                            decryptedText.append(shiftedChar);
-                        } else {
-                            char shiftedChar = (char) ((ch - 'a' - shift + 26) % 26 + 'a');
-                            decryptedText.append(shiftedChar);
-                        }
-                    } else {
-                        decryptedText.append(ch);
-                    }
+                if (Character.isWhitespace(currentChar)) {
+                    decryptedText.append(currentChar);
                 } else {
-                    decryptedText.append(ch);
+                    char shiftedChar = (char) (currentChar - shift);
+                    decryptedText.append(shiftedChar);
                 }
             }
-            result.append("Shift ").append(shift).append(": ").append(decryptedText.toString()).append("\n");
+
+            System.out.println("Shift " + shift + ": " + decryptedText.toString());
         }
-
-        return result.toString();
     }
-
 }
