@@ -38,28 +38,17 @@ public class ProblemSet4 {
         }
         return true;
     }
-    public static String encrypt(String text, int shift) {
-        StringBuilder encryptedtext = new StringBuilder();
+     public static String encrypt(String text, int shift) {
+        StringBuilder result = new StringBuilder();
 
-        text = text.toLowerCase();
-        for (int i = 0; i < text.length(); i++)
-        {
+        for (int i = 0; i < text.length(); i++) {
             char ch = text.charAt(i);
-            if (!Character.isWhitespace(ch)) {
-                if (Character.isLetter(ch)) {
-                    if (Character.isUpperCase(ch)) {
-                        ch = (char) ((ch - 'a' + shift + 26) % 26 + 'a');
-                        encryptedtext.append(ch);
-                    }
-                }
-            }
-            
-            encryptedtext.append(ch);
+            char shiftedChar = (char)(ch + shift);
+            result.append(shiftedChar);
         }
 
-        return encryptedtext.toString();
+        return result.toString();
     }
-
 
     public static String decrypt(String text, int shift) {
         StringBuilder decryptedText = new StringBuilder();
