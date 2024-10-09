@@ -3,12 +3,7 @@ other students or code from online resources. Felipe Cardozo */
 
 public class ProblemSet4 {
     public static void main(String[] args) {
-        System.out.println(isPalindrome("dad"));
         System.out.println(isPalindrome("a mala nada na lama"));
-        System.out.println(isPalindrome("9910101010199"));
-        System.out.println(isPalindrome("9910101010199"));  // Shouldnt work fix that
-        System.out.println(isPalindrome("990101099"));
-        System.out.println(isPalindrome("botafogo"));
 
 
         System.out.println(encrypt("Botafogo", 3));
@@ -19,15 +14,8 @@ public class ProblemSet4 {
 
         // determine the shift used and decrypt “T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d”
 
-/*
-        System.out.println(decrypt);
-
-        System.out.println(guess_shift);
-
-         */
 
     }
-    // if A differ from a and should write code to fix tha, eg Dad != dad
     public static boolean isPalindrome(String text) {
         String reverse = "";
         text = text.toLowerCase();
@@ -80,4 +68,25 @@ public class ProblemSet4 {
         // Return the decrypted string
         return decryptedText.toString();
     }
+    public static void guess_shift(String text) {
+        // Try all shift values from 1 to 26
+        for (int shift = 1; shift <= 26; shift++) {
+            StringBuilder decryptedText = new StringBuilder();
+
+            // Loop through each character in the text
+            for (int i = 0; i < text.length(); i++) {
+                char ch = text.charAt(i);
+
+                // Shift the character back by the shift value
+                char shiftedChar = (char) (ch - shift);
+
+                // Append the shifted character to the result
+                decryptedText.append(shiftedChar);
+            }
+
+            // Print the shift value and corresponding decrypted text
+            System.out.println("Shift " + shift + ": " + decryptedText.toString());
+        }
+    }
+
 }
