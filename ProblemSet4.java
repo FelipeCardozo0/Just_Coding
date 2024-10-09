@@ -57,27 +57,20 @@ public class ProblemSet4 {
         return encryptedText.toString();
     }
 
-    public static String decrypt(String text, int shift) {
+ public static String decrypt(String text, int shift) {
         StringBuilder decryptedText = new StringBuilder();
-
+        
         for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
+            char currentChar = text.charAt(i);
 
-            if (!Character.isWhitespace(ch)) {
-                if (Character.isLetter(ch)) {
-                    if (Character.isUpperCase(ch)) {
-
-                        char shiftedChar = (char) ((ch - 'A' - shift + 26) % 26 + 'A');
-                        decryptedText.append(shiftedChar);
-                    } else {
-                        char shiftedChar = (char) ((ch - 'a' - shift + 26) % 26 + 'a');
-                        decryptedText.append(shiftedChar);
-                    }
-                } else {
-                    decryptedText.append(ch);
-                }
+            // Check if the character is a whitespace
+            if (Character.isWhitespace(currentChar)) {
+                decryptedText.append(currentChar);
             } else {
-                decryptedText.append(ch);             }
+                // Reverse the shift by subtracting the shift value
+                char shiftedChar = (char) (currentChar - shift);
+                decryptedText.append(shiftedChar);
+            }
         }
 
         return decryptedText.toString();
