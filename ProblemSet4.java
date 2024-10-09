@@ -9,33 +9,16 @@ public class ProblemSet4 {
         System.out.println(decrypt("Erwdirjr", 3));
 
         System.out.println(encrypt("This is my secret message", 3));
-        System.out.println(decrypt("Wklv lv pb vhfuhw phvvdjh" , 3));
+        System.out.println(decrypt("Wklv lv pb vhfuhw phvvdjh", 3));
 
-        System.out.println(decrypt("Wklv lv p| vhfuhw phvvdjh, 3)" , 3));
+        System.out.println(decrypt("Wklv lv p| vhfuhw phvvdjh, 3)", 3));
         System.out.println(decrypt("decrypt(IY 7=6 oy znk hkyz irgyy", 6));
         System.out.println(decrypt("}om|o~} }om|o~} }om|o~}", 10));
         System.out.println(decrypt("CS 170 is the best class", 6));
-        
+
         System.out.println(decrypt("Neze tvskveqqmrk mw ws qygl jyr", 4));
 
         System.out.println(guess_shift("T ^_`Od NZX[`_P] ^NTPYNPL_ PXZ]d"));
-    }
-
-    public static boolean isPalindrome(String text) {
-        String reverse = "";
-        text = text.toLowerCase();
-        text = text.replace(" ",""); //cant change a string, make new string
-
-        for (int i = text.length() - 1; i >= 0; i--) {
-            reverse += text.charAt(i);
-        }
-
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) != reverse.charAt(i)){
-                return false;
-            }
-        }
-        return true;
     }
 
     public static String encrypt(String text, int shift) {
@@ -46,7 +29,7 @@ public class ProblemSet4 {
             char ch = text.charAt(i);
 
             if (!Character.isWhitespace(ch)) {
-                // Only shift alphabetic characters (handling both upper and lower case)
+                // Shift alphabetic characters (handling both upper and lower case)
                 if (Character.isLetter(ch)) {
                     if (Character.isUpperCase(ch)) {
                         // Wrap around uppercase letters
@@ -57,8 +40,12 @@ public class ProblemSet4 {
                         char shiftedChar = (char) ((ch - 'a' + shift) % 26 + 'a');
                         encryptedText.append(shiftedChar);
                     }
+                } else if (Character.isDigit(ch)) {
+                    // Shift numeric characters (wrap around '0' to '9')
+                    char shiftedChar = (char) ((ch - '0' + shift) % 10 + '0');
+                    encryptedText.append(shiftedChar);
                 } else {
-                    // Non-alphabetic characters are added unchanged
+                    // Non-alphabetic, non-numeric characters are added unchanged
                     encryptedText.append(ch);
                 }
             } else {
@@ -66,7 +53,6 @@ public class ProblemSet4 {
             }
         }
 
-        // Return the encrypted string
         return encryptedText.toString();
     }
 
@@ -78,7 +64,7 @@ public class ProblemSet4 {
             char ch = text.charAt(i);
 
             if (!Character.isWhitespace(ch)) {
-                // Only shift alphabetic characters (handling both upper and lower case)
+                // Shift alphabetic characters (handling both upper and lower case)
                 if (Character.isLetter(ch)) {
                     if (Character.isUpperCase(ch)) {
                         // Wrap around uppercase letters
@@ -89,8 +75,12 @@ public class ProblemSet4 {
                         char shiftedChar = (char) ((ch - 'a' - shift + 26) % 26 + 'a');
                         decryptedText.append(shiftedChar);
                     }
+                } else if (Character.isDigit(ch)) {
+                    // Shift numeric characters (wrap around '0' to '9')
+                    char shiftedChar = (char) ((ch - '0' - shift + 10) % 10 + '0');
+                    decryptedText.append(shiftedChar);
                 } else {
-                    // Non-alphabetic characters are added unchanged
+                    // Non-alphabetic, non-numeric characters are added unchanged
                     decryptedText.append(ch);
                 }
             } else {
@@ -98,7 +88,6 @@ public class ProblemSet4 {
             }
         }
 
-        // Return the decrypted string
         return decryptedText.toString();
     }
 
@@ -114,19 +103,21 @@ public class ProblemSet4 {
                 char ch = text.charAt(i);
 
                 if (!Character.isWhitespace(ch)) {
-                    // Only shift alphabetic characters
+                    // Shift alphabetic characters
                     if (Character.isLetter(ch)) {
                         if (Character.isUpperCase(ch)) {
-                            // Wrap around uppercase letters
                             char shiftedChar = (char) ((ch - 'A' - shift + 26) % 26 + 'A');
                             decryptedText.append(shiftedChar);
                         } else {
-                            // Wrap around lowercase letters
                             char shiftedChar = (char) ((ch - 'a' - shift + 26) % 26 + 'a');
                             decryptedText.append(shiftedChar);
                         }
+                    } else if (Character.isDigit(ch)) {
+                        // Shift numeric characters
+                        char shiftedChar = (char) ((ch - '0' - shift + 10) % 10 + '0');
+                        decryptedText.append(shiftedChar);
                     } else {
-                        // Non-alphabetic characters are added unchanged
+                        // Non-alphabetic, non-numeric characters are added unchanged
                         decryptedText.append(ch);
                     }
                 } else {
@@ -138,8 +129,6 @@ public class ProblemSet4 {
             result.append("Shift ").append(shift).append(": ").append(decryptedText.toString()).append("\n");
         }
 
-        // Return the accumulated result as a single string
         return result.toString();
     }
-
 }
