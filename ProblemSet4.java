@@ -1,7 +1,7 @@
 /* This code is my own work. It was written without consulting code written by
 other students or code from online resources. Felipe Cardozo */
 
-public class test2 {
+public class ProblemSet4 {
     public static void main(String[] args) {
 
         System.out.println(encrypt("Secrets secrets secrets", 10));
